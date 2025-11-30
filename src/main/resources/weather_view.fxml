@@ -4,13 +4,8 @@
 <?import javafx.scene.control.*?>
 <?import javafx.scene.layout.*?>
 
-<?import java.net.URL?>
 <BorderPane xmlns:fx="http://javafx.com/fxml"
             fx:controller="com.quang.WeatherController">
-
-    <stylesheets>
-        <URL value="@weather.css"/>
-    </stylesheets>
 
     <top>
         <VBox spacing="10">
@@ -19,21 +14,52 @@
             </padding>
 
             <Label text="Weather Client App"
-                   style="-fx-font-size: 20px; -fx-font-weight: bold; -fx-text-fill: white;"/>
+                   style="-fx-font-size: 22px; -fx-font-weight: bold;"/>
 
             <HBox spacing="10">
-                <Label text="Chọn thành phố:" style="-fx-text-fill: white;"/>
-                <ComboBox fx:id="cityCombo" prefWidth="150"/>
-                <Button fx:id="fetchBtn" text="Lấy thời tiết" onAction="#onFetchWeather"/>
+                <Label text="City:"/>
+                <ComboBox fx:id="cityCombo" prefWidth="160"/>
+                <Button fx:id="fetchBtn" text="Fetch Weather" onAction="#onFetchWeather"/>
             </HBox>
         </VBox>
     </top>
 
     <center>
-        <TextArea fx:id="resultArea"
-                  wrapText="true"
-                  editable="false"
-                  style="-fx-font-size: 14px;"/>
+        <VBox spacing="15" alignment="CENTER">
+            <Label fx:id="tempLabel"
+                   text="-- °C"
+                   style="-fx-font-size: 32px; -fx-font-weight: bold;"/>
+
+            <Label fx:id="statusLabel"
+                   text="---"
+                   style="-fx-font-size: 18px;"/>
+
+            <!-- WEATHER GRID -->
+            <GridPane hgap="30" vgap="15" alignment="CENTER">
+
+                <Label text="Wind:" GridPane.rowIndex="0" GridPane.columnIndex="0"/>
+                <Label fx:id="windLabel" GridPane.rowIndex="0" GridPane.columnIndex="1"/>
+
+                <Label text="Humidity:" GridPane.rowIndex="1" GridPane.columnIndex="0"/>
+                <Label fx:id="humidityLabel" GridPane.rowIndex="1" GridPane.columnIndex="1"/>
+
+                <Label text="Cloud Cover:" GridPane.rowIndex="2" GridPane.columnIndex="0"/>
+                <Label fx:id="cloudLabel" GridPane.rowIndex="2" GridPane.columnIndex="1"/>
+
+                <Label text="Pressure:" GridPane.rowIndex="3" GridPane.columnIndex="0"/>
+                <Label fx:id="pressureLabel" GridPane.rowIndex="3" GridPane.columnIndex="1"/>
+
+                <Label text="UV Index:" GridPane.rowIndex="4" GridPane.columnIndex="0"/>
+                <Label fx:id="uvLabel" GridPane.rowIndex="4" GridPane.columnIndex="1"/>
+
+                <Label text="Visibility:" GridPane.rowIndex="5" GridPane.columnIndex="0"/>
+                <Label fx:id="visibilityLabel" GridPane.rowIndex="5" GridPane.columnIndex="1"/>
+            </GridPane>
+        </VBox>
     </center>
+
+    <bottom>
+        <TextArea fx:id="resultArea" prefHeight="180" wrapText="true"/>
+    </bottom>
 
 </BorderPane>
